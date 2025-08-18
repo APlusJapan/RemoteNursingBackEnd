@@ -31,8 +31,10 @@ public class UserAccountController {
             return ResponseEntity.status(404).body("user not found");
         }
         return ResponseEntity.ok(Map.of(
-                "userId", account.getUserId(),
-                "login_name", account.getLoginName()
+                "userId", account.getUserId() == null ? "" : account.getUserId(),
+                "login_name", account.getLoginName() == null ? "" : account.getLoginName(),
+                "nick_name", account.getNickName() == null ? "" : account.getNickName(),
+                "admin_id", account.getAdminId() == null ? "" : account.getAdminId()
         ));
     }
 
@@ -40,13 +42,16 @@ public class UserAccountController {
     public ResponseEntity<?> register(@RequestBody Map<String, String> body) {
         String loginName = body.get("login_name");
         String password = body.get("password");
-        UserAccount account = userAccountService.register(loginName, password);
+        String nickName = body.get("nick_name");
+        UserAccount account = userAccountService.register(loginName, password, nickName);
         if (account == null) {
             return ResponseEntity.status(409).body("login_name exists");
         }
         return ResponseEntity.ok(Map.of(
-                "userId", account.getUserId(),
-                "login_name", account.getLoginName()
+                "userId", account.getUserId() == null ? "" : account.getUserId(),
+                "login_name", account.getLoginName() == null ? "" : account.getLoginName(),
+                "nick_name", account.getNickName() == null ? "" : account.getNickName(),
+                "admin_id", account.getAdminId() == null ? "" : account.getAdminId()
         ));
     }
     @GetMapping("/useraccount/{userId}")

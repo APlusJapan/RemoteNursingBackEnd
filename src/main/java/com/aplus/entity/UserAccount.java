@@ -36,8 +36,16 @@ public class UserAccount {
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastLoginTime;
 
+
     @Column(name = "last_login_ip", length = 45)
     private String lastLoginIp;
+
+    @Column(name = "admin_id", length = 15)
+    private String adminId;
+
+
+    @Column(name = "nick_name", length = 50)
+    private String nickName;
 
     @Column(name = "is_deleted")
     private Boolean isDeleted = false;
@@ -68,10 +76,16 @@ public class UserAccount {
     public void setLastLoginTime(Date lastLoginTime) { this.lastLoginTime = lastLoginTime; }
     public String getLastLoginIp() { return lastLoginIp; }
     public void setLastLoginIp(String lastLoginIp) { this.lastLoginIp = lastLoginIp; }
+
+    public String getAdminId() { return adminId; }
+    public void setAdminId(String adminId) { this.adminId = adminId; }
     public Boolean getIsDeleted() { return isDeleted; }
     public void setIsDeleted(Boolean isDeleted) { this.isDeleted = isDeleted; }
     public Date getCreatedAt() { return createdAt; }
     public void setCreatedAt(Date createdAt) { this.createdAt = createdAt; }
     public Date getUpdatedAt() { return updatedAt; }
     public void setUpdatedAt(Date updatedAt) { this.updatedAt = updatedAt; }
+
+    public String getNickName() { return nickName; }
+    public void setNickName(String nickName) { this.nickName = nickName; }
 }

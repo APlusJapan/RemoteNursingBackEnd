@@ -32,7 +32,7 @@ public class UserAccountServiceImpl implements UserAccountService {
 
     @Override
     @Transactional
-    public UserAccount register(String loginName, String password) {
+    public UserAccount register(String loginName, String password, String nickName) {
         if (userAccountRepository.findByLoginName(loginName).isPresent()) {
             return null;
         }
@@ -40,6 +40,7 @@ public class UserAccountServiceImpl implements UserAccountService {
         account.setUserId(UUID.randomUUID().toString().replace("-", "").substring(0, 15));
         account.setLoginName(loginName);
         account.setPasswordHash(encoder.encode(password));
+        account.setNickName(nickName);
         account.setLoginStatus("active");
         account.setLoginFailCount(0);
         account.setIsDeleted(false);
